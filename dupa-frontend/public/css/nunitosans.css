@@ -1,0 +1,7 @@
+.nunito-sans-default {
+  font-family: "NunitoSans", serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+  font-variation-settings: ("wdth" 100, "YTLC" 500);
+}

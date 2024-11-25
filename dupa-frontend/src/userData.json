@@ -1,0 +1,47 @@
+[
+    {
+        "id": "1",
+        "name": "John Doe",
+        "email": "john.doe@email.com",
+        "password": "user 1",
+        "phone": "+254711123456",
+        "created_at": "2024-11-01T10:00:00",
+        "updated_at": "2024-11-10T15:00:00"
+    },
+    {
+        "id": "2",
+        "name": "Jane Smith",
+        "email": "jane.smith@email.com",
+        "password": "user 2",
+        "phone": "+254722654321",
+        "created_at": "2024-11-05T12:00:00",
+        "updated_at": "2024-11-12T16:00:00"
+    },
+    {
+        "id": "3",
+        "name": "Alex Kimani",
+        "email": "alex.kimani@email.com",
+        "password": "user 3",
+        "phone": "+254733987654",
+        "created_at": "2024-11-08T14:30:00",
+        "updated_at": "2024-11-15T11:30:00"
+    },
+    {
+        "id": "4",
+        "name": "Sarah Wanjiru",
+        "email": "sarah.wanjiru@email.com",
+        "password": "user 4",
+        "phone": "+254744321987",
+        "created_at": "2024-11-09T09:45:00",
+        "updated_at": "2024-11-16T10:20:00"
+    },
+    {
+        "id": "5",
+        "name": "Brian Otieno",
+        "email": "brian.otieno@email.com",
+        "password": "user 5",
+        "phone": "+254755654987",
+        "created_at": "2024-11-11T08:20:00",
+        "updated_at": "2024-11-17T09:40:00"
+    }
+]
