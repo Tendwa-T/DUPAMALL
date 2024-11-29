@@ -5,7 +5,7 @@ import PreviewsComponent from "./components/LandingPreviews";
 
 export default function Home() {
   return (
-    <Box sx={{ bgcolor: "whitesmoke" }}>
+    <Box sx={{ bgcolor: "whitesmoke", height: "100vh" }}>
       <NavBarComponent selected={0} />
       <LandingSection />
       <PreviewsComponent />

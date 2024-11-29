@@ -78,7 +78,7 @@ export default function PreviewsComponent() {
     return (
         <>
 
-            <Box sx={{ my: '5em', px: '5em' }}>
+            <Box sx={{ my: '2em', px: '5em', }}>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', }}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <Category sx={{ mr: '0.5em', color: '#02542D' }} fontSize="large" />
@@ -88,8 +88,11 @@ export default function PreviewsComponent() {
                     </Box>
 
                 </Box>
-                <Box className="slider-container" sx={{ my: '2em' }}>
-                    < Slider {...settings} >
+                <Box className="slider-container" sx={{ my: '2em', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <Typography textAlign={'center'} variant="caption">
+                        Categories not yet indexed
+                    </Typography>
+                    {/* < Slider {...settings} >
                         {categories.map((cat) => (
                             <Card key={cat.id}>
                                 <CardActionArea>
@@ -108,7 +111,7 @@ export default function PreviewsComponent() {
                             </Card>
 
                         ))}
-                    </Slider>
+                    </Slider> */}
 
                 </Box>
             </Box >

@@ -1,19 +1,23 @@
 "use client";
 
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { Alert, Box, Button, CircularProgress, Grid2, IconButton, InputAdornment, Link, Slide, Snackbar, TextField, Typography } from "@mui/material";
+import { Alert, Box, Button, CircularProgress, Grid2, IconButton, InputAdornment, Slide, Snackbar, TextField, Typography } from "@mui/material";
 import Image from "next/image";
 import { NextResponse } from "next/server";
 import { useState } from "react";
 import { useUser } from "@/context/user/useUser";
 import { useRouter } from "next/navigation";
 
-export default function LoginPage() {
+export default function RegistrationPage() {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [phone, setPhone] = useState("");
+    const [confirmpassword, setConfirmpassword] = useState("");
     const [password, setPassword] = useState("");
-    const { user, userLogin } = useUser();
+    const { userRegister } = useUser();
     const [vis, setVis] = useState(false)
     const [snack, setSnack] = useState({
         open: false,
@@ -35,6 +39,18 @@ export default function LoginPage() {
     }
     function handleEmail(e) {
         setEmail(e.target.value);
+    }
+    function handleFName(e) {
+        setFirstName(e.target.value);
+    }
+    function handleLName(e) {
+        setLastName(e.target.value)
+    }
+    function handlePhone(e) {
+        setPhone(e.target.value)
+    }
+    function handleConfirm(e) {
+        setConfirmpassword(e.target.value)
     }
 
     function handleClick(mes, success) {
@@ -58,10 +74,10 @@ export default function LoginPage() {
     async function contactServer() {
         setLoading(true);
         try {
-            const res = await userLogin(email, password);
+            const res = await userRegister(firstName, lastName, email, phone, password, confirmpassword);
             if (res.success) {
                 handleClick(res.message, true)
-                router.push("/admin/");
+                router.push("/authentication/login");
             } else {
                 handleClick(res.message, false);
             }
@@ -98,13 +114,76 @@ export default function LoginPage() {
                             display: 'flex', flexDirection: 'column', width: '100%', border: 1, borderRadius: '2em', p: '2em', color: 'white'
                         }}>
                             <Typography textAlign={"center"} variant="h6">
-                                LOGIN
+                                Registration
                             </Typography>
                             <Box
                                 component={"form"}
                                 sx={{ m: 1, color: 'white' }}
                             >
                                 <Box sx={{ display: 'flex' }}>
+                                    <TextField
+                                        name="firstname"
+                                        id="firstname"
+                                        type="text"
+                                        className="border-black fill-black"
+                                        label="First Name"
+                                        onBlur={handleFName}
+                                        fullWidth
+                                        sx={{
+                                            "& .MuiOutlinedInput-root": {
+                                                "& fieldset": {
+                                                    borderColor: "white", // Default border color
+                                                },
+                                                "&:hover fieldset": {
+                                                    borderColor: "#E8B931", // Border color on hover
+                                                },
+                                                "&.Mui-focused fieldset": {
+                                                    borderColor: "#E8B931", // Border color when focused
+                                                }
+                                            }
+                                        }}
+                                        slotProps={{
+                                            input: {
+                                                style: { color: 'white', },
+                                            },
+                                            inputLabel: {
+                                                style: { color: 'white' }
+                                            },
+                                        }}
+                                    />
+                                    <Box sx={{ width: '2em' }} />
+                                    <TextField
+                                        name="lastname"
+                                        id="lastname"
+                                        type="text"
+                                        onBlur={handleLName}
+                                        label="Last Name"
+                                        fullWidth
+                                        sx={{
+                                            "& .MuiOutlinedInput-root": {
+                                                "& fieldset": {
+                                                    borderColor: "white", // Default border color
+                                                },
+                                                "&:hover fieldset": {
+                                                    borderColor: "#E8B931", // Border color on hover
+                                                },
+                                                "&.Mui-focused fieldset": {
+                                                    borderColor: "#E8B931", // Border color when focused
+                                                }
+                                            }
+                                        }}
+                                        slotProps={{
+                                            input: {
+                                                style: { color: 'white', },
+                                            },
+                                            inputLabel: {
+                                                style: { color: 'white' }
+                                            },
+                                        }}
+
+                                    />
+                                </Box>
+                                <Box sx={{ display: 'flex', py: '1em' }}>
                                     <TextField
                                         name="email"
                                         id="email"
@@ -137,11 +216,82 @@ export default function LoginPage() {
                                     />
                                     <Box sx={{ width: '2em' }} />
                                     <TextField
+                                        name="phone"
+                                        id="phone"
+                                        type="tel"
+                                        onBlur={handlePhone}
+                                        label="Phone"
+                                        fullWidth
+                                        sx={{
+                                            "& .MuiOutlinedInput-root": {
+                                                "& fieldset": {
+                                                    borderColor: "white", // Default border color
+                                                },
+                                                "&:hover fieldset": {
+                                                    borderColor: "#E8B931", // Border color on hover
+                                                },
+                                                "&.Mui-focused fieldset": {
+                                                    borderColor: "#E8B931", // Border color when focused
+                                                }
+                                            }
+                                        }}
+                                        slotProps={{
+                                            input: {
+                                                style: { color: 'white', },
+                                            },
+                                            inputLabel: {
+                                                style: { color: 'white' }
+                                            },
+                                        }}
+
+                                    />
+                                </Box>
+                                <Box sx={{ display: 'flex', py: '1em' }}>
+                                    <TextField
                                         name="password"
                                         id="password"
                                         type={vis ? "text " : "password"}
                                         onBlur={handleSubmit}
                                         label="Password"
+                                        fullWidth
+                                        sx={{
+                                            "& .MuiOutlinedInput-root": {
+                                                "& fieldset": {
+                                                    borderColor: "white", // Default border color
+                                                },
+                                                "&:hover fieldset": {
+                                                    borderColor: "#E8B931", // Border color on hover
+                                                },
+                                                "&.Mui-focused fieldset": {
+                                                    borderColor: "#E8B931", // Border color when focused
+                                                }
+                                            }
+                                        }}
+                                        slotProps={{
+                                            input: {
+                                                style: { color: 'white', },
+                                                endAdornment: <InputAdornment>
+                                                    <IconButton
+                                                        sx={{ color: 'white' }}
+                                                        onClick={showPassword}
+                                                    >
+                                                        {vis ? <VisibilityOff /> : <Visibility />}
+                                                    </IconButton>
+                                                </InputAdornment>
+                                            },
+                                            inputLabel: {
+                                                style: { color: 'white' }
+                                            },
+                                        }}
+
+                                    />
+                                    <Box sx={{ width: '2em' }} />
+                                    <TextField
+                                        name="confpassword"
+                                        id="confpassword"
+                                        type={vis ? "text " : "password"}
+                                        onBlur={handleConfirm}
+                                        label="Confirm Password"
                                         fullWidth
                                         sx={{
                                             "& .MuiOutlinedInput-root": {
@@ -186,12 +336,9 @@ export default function LoginPage() {
                                         onClick={contactServer}
                                         disabled={loading}
                                     >
-                                        {loading ? <CircularProgress color="white" size={24} /> : "Login"}
+                                        {loading ? <CircularProgress color="white" size={24} /> : "Register"}
                                     </Button>
                                 </Box>
-
-
-                                <Typography textAlign={'center'} sx={{ m: '2em' }}>Create a Seller account with us <Link href="/authentication/registration">Register</Link></Typography>
 
                             </Box>
 

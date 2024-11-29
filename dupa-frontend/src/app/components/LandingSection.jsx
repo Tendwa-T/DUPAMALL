@@ -11,9 +11,9 @@ export default function LandingSection() {
                         <Typography variant="h3" textAlign={'left'} sx={{ fontFamily: 'sans-serif', fontSize: { xs: '1.5em', md: '2em', lg: '3em' }, fontWeight: '400', color: '#02542D' }}>
                             Connect, Create, and Trade: Your Campus Marketplace for Student-Made Creations
                         </Typography>
-                        <Button sx={{ mt: '2em', bgcolor: "#E8B931", width: '15em', alignSelf: 'flex-start' }} variant="contained">
+                        {/* <Button sx={{ mt: '2em', bgcolor: "#E8B931", width: '15em', alignSelf: 'flex-start' }} variant="contained">
                             GET STARTED
-                        </Button>
+                        </Button> */}
                     </Box>
 
                 </Grid2>
